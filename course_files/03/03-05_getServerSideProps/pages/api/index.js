@@ -6,9 +6,11 @@ export async function handler(url) {
 }
 
 export async function search(url) {
-    const response = await fetch(url);
-      const data = await response.json();
-      const docs = data.response.docs ?? [];
+  console.log("*** URL", url)
+    const rawData = await fetch(url);
+      const jsonData = await rawData.json();
+      console.log("*** jsonData", jsonData);
+      const docs = jsonData.response.docs ?? [];
       const results = docs.map(doc => {
         return {
             title: doc?.headline?.main,
@@ -16,5 +18,5 @@ export async function search(url) {
             uri: doc.uri,
         }
       })
-    return results
+    return results;
 }

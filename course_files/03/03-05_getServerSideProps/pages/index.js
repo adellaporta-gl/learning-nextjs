@@ -10,6 +10,7 @@ export default function Home() {
   const router = useRouter()
   const handleOnChange = e => getQuery(e.target.value)
   const handleOnSubmit = e => {
+    console.log("*** query", query);
     e.preventDefault()
     router.push(`/news/${query}`)
   }
